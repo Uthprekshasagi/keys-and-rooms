@@ -1,0 +1,23 @@
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        boolean[] visited=new boolean[rooms.size()];
+        visited[0]=true;
+        ArrayList<Integer> keys=new ArrayList<Integer>();
+        keys.add(0);
+        while(keys.size()>0){
+            int index = keys.size() - 1;  
+            int current=keys.remove(index);
+            for(int i : rooms.get(current)){
+                if(!visited[i]){
+                    visited[i]=true;
+                    keys.add(i);
+                }
+            }
+        }
+        for(boolean i : visited){
+            if(!i)
+                return false;
+        }
+        return true;
+    }
+}
